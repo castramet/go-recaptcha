@@ -32,7 +32,7 @@ import (
 )
 
 // The URL of the Google reCaptcha API.
-const apiUrl string = "https://www.google.com/recaptcha/api/siteverify"
+const apiURL string = "https://www.google.com/recaptcha/api/siteverify"
 
 // Response represents the response of the Google reCaptcha API.
 type Response struct {
@@ -66,7 +66,7 @@ func (re Recaptcha) CheckRequest(r *http.Request, c *http.Client) (Response, err
 		c = http.DefaultClient
 	}
 
-	serverResponse, err := c.PostForm(apiUrl, url.Values{
+	serverResponse, err := c.PostForm(apiURL, url.Values{
 		"secret":   {re.Secret},
 		"response": {captcha},
 	})
