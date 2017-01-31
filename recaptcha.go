@@ -16,6 +16,10 @@
 //         print("Success")
 //     }
 //  }
+//
+// To run this package on Google's Appengine, simply invoke CheckRequest with the appropriate client:
+//   client := urlfetch.Client(appengine.NewContext(r))
+//   response, err := re.CheckRequest(r, client)
 package recaptcha
 
 import (
