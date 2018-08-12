@@ -67,7 +67,7 @@ func (re Recaptcha) CheckRequest(r *http.Request, c *http.Client) (Response, err
 		c = http.DefaultClient
 	}
 
-	remoteip := net.SplitHostPort(r.RemoteAddr)
+	remoteip, _, _ := net.SplitHostPort(r.RemoteAddr)
 	serverResponse, err := c.PostForm(apiURL, url.Values{
 		"secret":   {re.Secret},
 		"response": {captcha},
