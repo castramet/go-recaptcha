@@ -26,6 +26,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io/ioutil"
+	"net"
 	"net/http"
 	"net/url"
 	"time"
@@ -66,9 +67,11 @@ func (re Recaptcha) CheckRequest(r *http.Request, c *http.Client) (Response, err
 		c = http.DefaultClient
 	}
 
+	remoteip := net.SplitHostPort(r.RemoteAddr)
 	serverResponse, err := c.PostForm(apiURL, url.Values{
 		"secret":   {re.Secret},
 		"response": {captcha},
+		"remoteip": {remoteip},
 	})
 
 	if err != nil {
